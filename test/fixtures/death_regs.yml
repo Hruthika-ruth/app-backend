@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  birth_reg: one
+  father_first_name: MyString
+  father_last_name: MyString
+  mother_first_name: MyString
+  mother_last_name: MyString
+  deceased_first_name: MyString
+  deceased_last_name: MyString
+  place_of_death: MyString
+  place_of_birth: MyString
+  sex: MyString
+  address_at_time_of_death: MyText
+  permanent_address: MyText
+  local_area: MyString
+
+two:
+  birth_reg: two
+  father_first_name: MyString
+  father_last_name: MyString
+  mother_first_name: MyString
+  mother_last_name: MyString
+  deceased_first_name: MyString
+  deceased_last_name: MyString
+  place_of_death: MyString
+  place_of_birth: MyString
+  sex: MyString
+  address_at_time_of_death: MyText
+  permanent_address: MyText
+  local_area: MyString
