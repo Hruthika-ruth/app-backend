@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
   
-    # GET /users/new (Sign Up)
     def new
       @user = User.new
     end
@@ -10,28 +9,18 @@ class UsersController < ApplicationController
       @users = User.all
       render json: @users
     end
-  
-      # If you're using this for HTML response:
-      # respond_to do |format|
-      #   format.html # index.html.erb
-      #   format.json { render json: @users }
 
-   # POST /users (User Registration)
-   def create
-    if @user
-      @birth_reg = @user.birth_regs.build(birth_reg_params)
+    def create
+      logger.debug "Received params: #{params.inspect}"
+      @user = User.new(user_params) 
   
-      if @birth_reg.save
-        render json: @birth_reg, status: :created, location: user_birth_reg_path(@user, @birth_reg)
+      if @user.save
+        render json: @user, status: :created 
       else
-        render json: @birth_reg.errors, status: :unprocessable_entity
+        render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity 
       end
-    else
-      render json: { error: "User not found" }, status: :not_found
     end
-  end
 
-    # GET /users/1 (Profile Page - Optional)
     def show
       if @user
         render json: @user
@@ -40,11 +29,9 @@ class UsersController < ApplicationController
       end
     end
     
-    # Other actions like edit, update, and destroy can be added as needed.
   
     private
   
-      # Use callbacks to share common setup or constraints between actions.
       def set_user
         @user = User.find_by(id: params[:id])
         unless @user
@@ -52,9 +39,10 @@ class UsersController < ApplicationController
         end
       end
       
-      # Only allow a list of trusted parameters through.
       def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation)
+        params.require(:user).permit(:username, :email, :password)
       end
+      
+      
   end
   

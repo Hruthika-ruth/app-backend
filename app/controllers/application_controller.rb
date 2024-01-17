@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-  # before_action :authenticate_request
   attr_reader :current_user
 
   private
@@ -20,5 +19,4 @@ class ApplicationController < ActionController::API
       render json: { errors: 'Nil JSON web token' }, status: :unauthorized
     end
   end
-  
 end

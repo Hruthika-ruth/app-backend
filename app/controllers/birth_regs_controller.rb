@@ -2,16 +2,14 @@ class BirthRegsController < ApplicationController
   before_action :set_user, only: [:index, :create]
   before_action :set_birth_reg, only: [:show, :edit, :update, :destroy]
 
-  # GET /users/:user_id/birth_regs
   def index
     @birth_regs = @user.birth_regs
     render json: @birth_regs
   end
-
-  # POST /users/:user_id/birth_regs
+  
+  
   def create
     @birth_reg = @user.birth_regs.new(birth_reg_params)
-
     if @birth_reg.save
       render json: @birth_reg, status: :created, location: user_birth_reg_path(@user, @birth_reg)
     else
@@ -19,11 +17,9 @@ class BirthRegsController < ApplicationController
     end
   end
 
-  # Other actions...
-
   private
 
-  def set_birth_reg
+  def set_birth_reg 
     @birth_reg = BirthReg.find(params[:id])
   end
 
